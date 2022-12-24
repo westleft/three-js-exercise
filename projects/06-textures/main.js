@@ -1,7 +1,22 @@
-import { BoxGeometry, Clock, Mesh, MeshBasicMaterial, PerspectiveCamera, Scene, WebGLRenderer } from "three"
+import { BoxGeometry, Clock, Mesh, MeshBasicMaterial, NearestFilter, PerspectiveCamera, RepeatWrapping, Scene, TextureLoader, WebGLRenderer } from "three"
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import gsap from "gsap"
 import * as dat from "dat.gui"
+
+
+const textureLoader = new TextureLoader()
+const texture = textureLoader.load("../../assets/images/Metal046B_1K_Roughness.png")
+
+// texture.repeat.x = 2
+// texture.repeat.y = 3
+// texture.wrapS = RepeatWrapping
+// texture.wrapT = RepeatWrapping
+
+// texture.rotation = Math.PI / 4
+// texture.center.x = 0.5
+// texture.center.y = 0.5
+
+texture.magFilter = NearestFilter
 
 const gui = new dat.GUI()
 const canvas = document.querySelector('.webgl')
@@ -14,12 +29,15 @@ const parameters = {
   }
 }
 
-const material = new MeshBasicMaterial({ color: parameters.color })
+const material = new MeshBasicMaterial({ map: texture })
 
 const mesh = new Mesh(
   new BoxGeometry(1, 1, 1, 2, 2, 2),
   material
 );
+
+mesh.rotation.x = 2
+mesh.rotation.z = 2
 
 scene.add(mesh)
 gui.add(mesh.position, 'y', -3, 3, 1).name('red cube y')
@@ -54,7 +72,7 @@ window.addEventListener('resize', () => {
 // https://ithelp.ithome.com.tw/articles/10192109
 // 相機的視野, 視野外觀比例, 接近相機的平片, 遠相機的平面
 const camera = new PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 1000)
-camera.position.z = 6
+camera.position.z = 3
 camera.lookAt(mesh.position)
 scene.add(camera)
 

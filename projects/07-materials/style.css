@@ -1,0 +1,11 @@
+html, body {
+  padding: 0;
+  margin: 0;
+}
+
+.webgl {
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
