@@ -9,7 +9,7 @@ const canvas = document.querySelector('.webgl')
 const scene = new Scene();
 
 const axes = new AxesHelper()
-scene.add(axes)
+// scene.add(axes)
 
 // https://github.com/nidorx/matcaps
 const textuerLoader = new TextureLoader()
@@ -28,7 +28,7 @@ const fontLoader = new FontLoader()
 fontLoader.load(
   '../../node_modules/three/examples/fonts/gentilis_regular.typeface.json', 
   (font) => {
-    const textGeometry = new TextGeometry('Hello Peter' ,{
+    const textGeometry = new TextGeometry('404' ,{
       font: font,
       size: 0.5,
       height: 0.2,
@@ -57,14 +57,14 @@ fontLoader.load(
     const dountGeomtry = new TorusGeometry(0.3, 0.2, 20, 45)
     
 
-    for(let i = 0; i < 100; i++){
+    for(let i = 0; i < 200; i++){
       const num = Math.floor(Math.random()*6)
       const dountMaterial = new MeshMatcapMaterial({ matcap: matCatArr[num] })
       const dount = new Mesh(dountGeomtry, dountMaterial)
 
-      dount.position.x = (Math.random() - 0.5) * 10
-      dount.position.y = (Math.random() - 0.5) * 10
-      dount.position.z = (Math.random() - 0.5) * 10
+      dount.position.x = (Math.random() - 0.5) * 20
+      dount.position.y = (Math.random() - 0.5) * 20
+      dount.position.z = (Math.random() - 0.5) * 20
 
       dount.rotation.x = Math.random() * Math.PI
       dount.rotation.y = Math.random() * Math.PI
